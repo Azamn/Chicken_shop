@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/dashboard','AdminController@dashboard');
     Route::resource('/merchant','MerchantController');
+
+    Route::resource('/product','ProductController');
+
 });
 
 

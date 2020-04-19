@@ -15,12 +15,15 @@
                 <p>Merchant</p>
             </a>
         </li>
-{{--        <li class="nav-item ">--}}
-{{--            <a class="nav-link" href="./tables.html">--}}
-{{--                <i class="material-icons">content_paste</i>--}}
-{{--                <p>Table List</p>--}}
-{{--            </a>--}}
-{{--        </li>--}}
+
+{{--        list of merchant action and detail--}}
+
+        <li class="nav-item ">
+            <a class="nav-link" href="/admin/product">
+                <i class="material-icons">person_add</i>
+                <p>Product</p>
+            </a>
+        </li>
 {{--        <li class="nav-item ">--}}
 {{--            <a class="nav-link" href="./typography.html">--}}
 {{--                <i class="material-icons">library_books</i>--}}
