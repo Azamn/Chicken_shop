@@ -50,6 +50,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($request->is('merchant') || $request->is('merchant/*')){
+            return redirect()->guest('/login/merchant');
+        }
+
         return parent::render($request, $exception);
     }
 }

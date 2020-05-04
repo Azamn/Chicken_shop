@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->float('price');
             $table->float('quantity');
             $table->string('image');
-            $table->boolean('availability')->default(1);
+            $table->boolean('availability')->default('1');
             $table->timestamps();
         });
     }

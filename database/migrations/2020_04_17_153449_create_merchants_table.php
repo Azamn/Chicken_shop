@@ -22,8 +22,14 @@ class CreateMerchantsTable extends Migration
             $table->text('address');
             $table->string('shop_name');
             $table->string('document');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->string('latitude1');
+            $table->string('longitude1');
+            $table->string('latitude2');
+            $table->string('longitude2');
+            $table->string('latitude3')->nullable();
+            $table->string('longitude3')->nullable();
+            $table->string('latitude4')->nullable();
+            $table->string('longitude4')->nullable();
             $table->timestamps();
         });
     }

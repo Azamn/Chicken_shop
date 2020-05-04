@@ -18,6 +18,7 @@
                                 <th>Email</th>
                                 <th>Contact No</th>
                                 <th>Shop Name</th>
+                                <th>Document</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -30,8 +31,14 @@
                                     <td>{{ $merchant->contact_no }}</td>
                                     <td>{{ $merchant->shop_name }}</td>
                                     <td>
-{{--                                        <a class="btn btn-sm btn-primary" href="#"--}}
-{{--                                           style=" background-color:#fb8c00">Detail</a>--}}
+                                        <div class="col-md-4">
+                                            <img style="width: 100px; height:100px"
+                                                 src="/storage/merchant/documents/{{ $merchant->document }}"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary" href="/admin/merchant/{{ $merchant->id }}/edit"
+                                           style=" background-color:#fb8c00">Edit</a>
                                         <form action="/admin/merchant/{{$merchant->id}}" method="post">
                                             @csrf
                                             @method('DELETE')

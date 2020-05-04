@@ -18,6 +18,11 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+
+        if($guard == "merchant" && Auth::guard($guard)->check()){
+            return redirect('/merchant');
+        }
+
         if (Auth::guard($guard)->check()) {
             return redirect(RouteServiceProvider::HOME);
         }

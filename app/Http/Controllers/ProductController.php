@@ -49,18 +49,22 @@ class ProductController extends Controller
             $fileNameToStore = 'default.jpeg';
         }
 
-        $image = $fileNameToStore;
 
         $request->validate([
            'name' => 'required',
             'price' => 'required',
             'quantity' => 'required|max:4',
-            'image' => 'required',
+            'image'=> 'required',
         ]);
 
-        Product::create($request->all());
+        Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'image' => $fileNameToStore,
+        ]);
 
-        return redirect::route('Aproduct.index')->with('message','Merchant has been succesfully Added.');
+        return redirect::route('product.index')->with('message','Product has been succesfully Added.');
 
     }
 
@@ -85,7 +89,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        return view('Admin.Product.edit',compact('product'));
+        return view('Admin.Product.edit',compact('product','id'));
     }
 
     /**
@@ -93,11 +97,39 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+
+       $product = Product::find($id);
+
+        if($request->hasFile('image')){
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension =$request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            $path = $request->file('image')->storeAs('public/merchant/products',$fileNameToStore);
+        }
+        else{
+            $fileNameToStore = 'default.jpeg';
+        }
+
+        $image = $fileNameToStore;
+
+        $request->validate([
+//            'name' => 'required',
+            'price' => 'required',
+            'quantity' => 'required|max:4',
+//            'availability' => 'required',
+
+        ]);
+
+
+        $data = request()->except(['_token','_method']);
+        $product->where('id','=',$id)->update($data);
+
+        return redirect::route('product.index')->with('message','Merchant has been succesfully Updated.');
     }
 
     /**
@@ -111,4 +143,16 @@ class ProductController extends Controller
         $product->delete();
         return redirect::route('product.index')->with('message', 'Successfully Deleted');
     }
+
+    public function changeStatus(Request $request){
+
+        $product = Product::find($request->id);
+        $product->availability = $request->availability;
+        $product->save();
+
+        return response()->json(['success'=>'Status Change Successfully.']);
+
+    }
+
+
 }

@@ -57,11 +57,34 @@ class MerchantController extends Controller
             'address'=>'required',
             'shop_name'=>'required',
             'document' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
+            'latitude1' => 'required',
+            'longitude1' => 'required',
+            'latitude2' => 'required',
+            'longitude2' => 'required',
+//            'latitude3' => 'required',
+//            'longitude3' => 'required',
+//            'latitude4' => 'required',
+//            'longitude4' => 'required',
         ]);
 
-            Merchant::create($request->all());
+            Merchant::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+                'contact_no' => $request->contact_no,
+                'address' => $request->address,
+                'shop_name' => $request->shop_name,
+                'document' => $fileNameToStore,
+                'latitude1'=> $request->latitude1,
+                'longitude1'=> $request->longitude1,
+                'latitude2'=> $request->latitude2,
+                'longitude2'=> $request->longitude2,
+                'latitude3'=> $request->latitude3,
+                'longitude3'=> $request->longitude3,
+                'latitude4'=> $request->latitude4,
+                'longitude4'=> $request->longitude4,
+
+            ]);
 
         return redirect::route('merchant.index')->with('message','Merchant has been succesfully Added.');
 
@@ -82,11 +105,12 @@ class MerchantController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
-        //
+        $merchant = Merchant::find($id);
+        return view('Admin.Merchant.edit',compact('merchant','id'));
     }
 
     /**
@@ -94,11 +118,31 @@ class MerchantController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $merchant = Merchant::find($id);
+
+//
+        $request->validate([
+            'name' => 'required',
+            'email'=> 'required|email',
+            'password'=> 'required',
+            'contact_no'=> 'required|min:10|max:10',
+            'address'=>'required',
+            'shop_name'=>'required',
+            'latitude1' => 'required',
+            'longitude1' => 'required',
+            'latitude2' => 'required',
+            'longitude2' => 'required',
+        ]);
+
+        $data = request()->except(['_token','_method']);
+        $merchant->where('id','=',$id)->update($data);
+
+        return redirect::route('merchant.index')->with('message','Merchant has been succesfully Updated.');
     }
 
     /**

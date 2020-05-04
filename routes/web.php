@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::resource('/merchant','MerchantController');
 
     Route::resource('/product','ProductController');
+    Route::get('changeStatus','ProductController@changeStatus')->name('change.status');
 
 });
 
@@ -31,3 +32,17 @@ Route::group(['prefix' => 'admin'], function(){
 
 
 
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/login/merchant','Auth\LoginController@showMerchantLoginForm');
+Route::post('/login/merchant','Auth\LoginController@merchantLogin');
+
+Route::view('/merchant','merchant');
