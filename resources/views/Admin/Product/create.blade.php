@@ -18,7 +18,9 @@
                             <div class="form-group">
                                 <label for="name" class="bmd-label-floating">Name</label>
                                 <input id="name" type="text" name="name" class="form-control" >
-
+                                <small id="name" class="form-text text-muted mb-4">
+                                    Enter product name.
+                                </small>
                                 @error('name')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -29,7 +31,9 @@
                             <div class="form-group">
                                 <label id="price" for="price" class="bmd-label-floating">Price</label>
                                 <input type="number" name="price" class="form-control" >
-
+                                <small id="price" class="form-text text-muted mb-4">
+                                    Enter product price, use only number.
+                                </small>
                                 @error('price')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -42,7 +46,9 @@
                             <div class="form-group">
                                 <label for="quantity" class="bmd-label-floating">Quantity</label>
                                 <input id="quantity" type="text" name="quantity" class="form-control" >
-
+                                <small id="quantity" class="form-text text-muted mb-4">
+                                    Enter quantity in 100gms to 1000gms.
+                                </small>
                                 @error('quantity')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -61,6 +67,9 @@
                                         @enderror
 
                                     </div>
+                                    <small id="image" class="form-text text-muted mb-4">
+                                        Upload product image.
+                                    </small>
                                 </div>
                             </div>
                         </div>

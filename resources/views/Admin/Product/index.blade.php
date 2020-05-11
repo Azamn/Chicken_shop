@@ -43,7 +43,7 @@
                                     </td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price}} ₹</td>
-                                    <td>{{ $product->quantity }}</td>
+                                    <td>{{ $product->quantity }} gms</td>
                                     <td>
 {{--                                        @if($product->availability == 1)--}}
 {{--                                            <button class="btn btn-sm btn-success" name="availability">Available</button>--}}

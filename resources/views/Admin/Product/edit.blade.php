@@ -32,7 +32,9 @@
                             <div class="form-group">
                                 <label id="price" for="price" class="bmd-label-floating">Price</label>
                                 <input type="number" name="price" value="{{$product->price}}" class="form-control" >
-
+                                <small id="price" class="form-text text-muted mb-4">
+                                    Update product price.
+                                </small>
                                 @error('price')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -45,7 +47,9 @@
                             <div class="form-group">
                                 <label for="quantity" class="bmd-label-floating">Quantity</label>
                                 <input id="quantity" type="text" name="quantity" value="{{ $product->quantity }}" class="form-control" >
-
+                                <small id="quantity" class="form-text text-muted mb-4">
+                                    Update quantity in 10gms to 1000gms.
+                                </small>
                                 @error('quantity')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
