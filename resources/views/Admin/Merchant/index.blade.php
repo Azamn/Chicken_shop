@@ -18,7 +18,6 @@
                                 <th>Email</th>
                                 <th>Contact No</th>
                                 <th>Shop Name</th>
-                                <th>Document</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -30,12 +29,6 @@
                                     <td>{{ $merchant->email}}</td>
                                     <td>{{ $merchant->contact_no }}</td>
                                     <td>{{ $merchant->shop_name }}</td>
-                                    <td>
-                                        <div class="col-md-4">
-                                            <img style="width: 100px; height:100px"
-                                                 src="/storage/merchant/documents/{{ $merchant->document }}"/>
-                                        </div>
-                                    </td>
                                     <td>
                                         <a class="btn btn-sm btn-primary" href="/admin/merchant/{{ $merchant->id }}/edit"
                                            style=" background-color:#fb8c00">Edit</a>
